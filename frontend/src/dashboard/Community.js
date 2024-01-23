@@ -33,7 +33,7 @@ const Community = () => {
         <Link to="/">
           <img alt="logo" src={logo} />
         </Link>
-        <Link to="/dashboard">
+        <Link to={{ pathname: "/dashboard", state: { notSkipped: false } }}>
           <p style={{ color: "#0a3c57", fontSize: "30px" }}>
             <FontAwesomeIcon icon={faHome} />
           </p>

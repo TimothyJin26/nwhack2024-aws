@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bestbuds-dev-113922-authRole",
+      "UnauthRoleArn": "arn:aws:iam::533267090893:role/amplify-bestbuds-dev-113922-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::533267090893:role/amplify-bestbuds-dev-113922-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-bestbuds-dev-113922-deployment",
+      "UnauthRoleName": "amplify-bestbuds-dev-113922-unauthRole",
+      "StackName": "amplify-bestbuds-dev-113922",
+      "StackId": "arn:aws:cloudformation:us-west-2:533267090893:stack/amplify-bestbuds-dev-113922/1cf5dd70-ba27-11ee-9cc0-0af986f0776d",
+      "AmplifyAppId": "d2k5de9f5297k1"
+    }
+  }
+}

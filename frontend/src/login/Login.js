@@ -29,27 +29,7 @@ const Login = () => {
   };
 
   const tryLogin = () => {
-    fetch("http://localhost:8080/auth/login", {
-      method: "POST",
-      body: JSON.stringify({
-        email: login,
-        password: password,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        Origin: "http://localhost:3000",
-      },
-      credentials: "include",
-    })
-      .then((response) => response.json())
-
-      .then((json) => {
-        console.log(json);
-        if (json.msg == "loginSuccess") {
-          navigate("/quiz", { state: { token: json.data.token } });
-        }
-      })
-      .catch((error) => console.error(error));
+   navigate("/quiz");
   };
 
   return (

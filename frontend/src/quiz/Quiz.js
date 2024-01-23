@@ -13,7 +13,6 @@ function Quiz() {
     sunlight: "",
     space: "",
   });
-  const [token, setToken] = useState(location.state.token);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -37,12 +36,12 @@ function Quiz() {
         formData.space
     );
     // Create user in Database
-    navigate("/dashboard", { state: { tokenKey: token, notSkipped: true } });
+    navigate("/dashboard", { state: { notSkipped: true } });
   };
 
   const handleSkip = (e) => {
     // Create user in Database
-    navigate("/dashboard", { state: { tokenKey: token, notSkipped: false } });
+    navigate("/dashboard", { state: { notSkipped: false } });
   };
 
   return (

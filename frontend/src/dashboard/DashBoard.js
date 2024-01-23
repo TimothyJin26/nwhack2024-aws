@@ -36,18 +36,13 @@ const Dashboard = () => {
 
   const [newPlantOpen, setNewPlantOpen] = useState(false);
   const [recommendedOpen, setRecommendedOpen] = useState(
-    location.state.notSkipped
-  );
+    (location.state && location.state.notSkipped) || false
+    );
   const [isLoading, setIsLoading] = useState(false);
-  const [token, setToken] = useState(location.state.tokenKey);
 
   const [data, setData] = useState([[]]);
 
   const [modalPlant, setModalPlant] = useState("");
-
-  useEffect(() => {
-    handleToken();
-  }, [token, newPlantOpen]);
 
   const handleExit = () => {
     setNewPlantOpen(false);
@@ -60,31 +55,6 @@ const Dashboard = () => {
     setRecommendedOpen(false);
   };
 
-  const handleToken = () => {
-    getData();
-  };
-
-  const getData = () => {
-    setIsLoading(true);
-    console.log("GETTING DATA");
-    fetch("http://localhost:8080/dashboard", {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        Origin: "http://localhost:3000",
-        Authorization: token,
-      },
-      credentials: "include",
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        setData(json);
-        setIsLoading(false);
-      })
-      .catch((error) => console.error(error));
-  };
-
   return (
     <div className="dashboard-container">
       <Modal open={newPlantOpen || recommendedOpen}>
@@ -92,7 +62,7 @@ const Dashboard = () => {
           <div className="plant-count-badge-exit" onClick={() => handleExit()}>
             X
           </div>
-          {newPlantOpen && <NewPlant plantType={modalPlant} token={token} exitWindow={handleExit}/>}
+          {newPlantOpen && <NewPlant plantType={modalPlant} exitWindow={handleExit}/>}
           {recommendedOpen && <Recommendation openNewPlant={openNewPlant} />}
         </Box>
       </Modal>
@@ -100,7 +70,7 @@ const Dashboard = () => {
         <Link to="/">
           <img alt="logo" src={logo} />
         </Link>
-        <Link to="/dashboard">
+        <Link to={{ pathname: "/dashboard", state: { notSkipped: false } }}>
           <p style={{ color: '#0a3c57', fontSize: "30px" }}>
             <FontAwesomeIcon icon={faHome} />
           </p>
